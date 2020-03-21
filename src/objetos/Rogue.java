@@ -1,5 +1,6 @@
 package objetos;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import StateAction.Estado;
@@ -33,6 +34,9 @@ public class Rogue extends Player implements Personaje{
 	
 	@Override
 	public void dibujar(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillRect((int)posicion.getX()+ Assets.knight_stop[0].getWidth()/6, (int)posicion.getY()+ Assets.knight_stop[0].getWidth()/3+(10),45,60);
+		g.fillRect(200, 200, 50, 50);
 		Estado.i++;
 		g.drawImage(miEstado.ejecutarAccion(g),(int) posicion.getX(), (int)posicion.getY(), null);
 		

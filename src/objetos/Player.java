@@ -1,21 +1,26 @@
 package objetos;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import StateAction.Estado;
 import StateAction.KAttack;
+import StateAction.KClimb;
 import StateAction.KJump;
 import StateAction.KStop;
 import StateAction.KWalk;
 import StateAction.MAttack;
+import StateAction.MClimb;
 import StateAction.MIdle;
 import StateAction.MJump;
 import StateAction.MStop;
 import StateAction.MWalk;
 import StateAction.RAttack;
+import StateAction.RClimb;
 import StateAction.RJump;
 import StateAction.RStop;
 import StateAction.RWalk;
+import graficos.Assets;
 import input.KeyBoard;
 import matematica.Vector2D;
 import sonido.AttackSound;
@@ -38,6 +43,9 @@ public class Player extends GameObject {
 	public void actualizar() {
 		if(KeyBoard.W) {
 			posicion.setY(posicion.getY()-5);
+			Knight.setEstado(new KClimb());
+			Mage.setEstado(new MClimb());
+			Rogue.setEstado(new RClimb());
 		}
 		if(KeyBoard.D) {
 			posicion.setX(posicion.getX()+5);
@@ -47,6 +55,9 @@ public class Player extends GameObject {
 		}
 		if(KeyBoard.S) {
 			posicion.setY(posicion.getY()+5);
+			Knight.setEstado(new KClimb());
+			Mage.setEstado(new MClimb());
+			Rogue.setEstado(new RClimb());
 		}
 		if(KeyBoard.A) {
 			posicion.setX(posicion.getX()-5);
@@ -77,7 +88,6 @@ public class Player extends GameObject {
 	
 	@Override
 	public void dibujar(Graphics g) {
-		
 	}
 	
 	
