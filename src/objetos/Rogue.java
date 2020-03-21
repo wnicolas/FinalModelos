@@ -2,6 +2,7 @@ package objetos;
 
 import java.awt.Graphics;
 
+import StateAction.Estado;
 import estados.EstadoJuego;
 import graficos.Assets;
 import matematica.Vector2D;
@@ -10,6 +11,8 @@ public class Rogue extends Player implements Personaje{
 	
 	private final int TIPO_PERSONAJE=3;
 	private Personaje sucesor;
+	
+	static Estado miEstado;
 	
 	public Rogue(String tipo, Vector2D posicion, Personaje s) {
 		super(tipo, posicion);
@@ -28,15 +31,21 @@ public class Rogue extends Player implements Personaje{
 		
 	}
 	
-	
-	int i=0;
 	@Override
 	public void dibujar(Graphics g) {
-		i++;
-		i=i%7;
-		g.drawImage(Assets.rogue_attack[i],(int) posicion.getX(), (int)posicion.getY(), null);
+		Estado.i++;
+		g.drawImage(miEstado.ejecutarAccion(g),(int) posicion.getX(), (int)posicion.getY(), null);
 		
 	}
+	
+	public static void setEstado(Estado e) {
+		miEstado=e;
+	}
+	public static void ejecutarAccion(Graphics g) {
+		miEstado.ejecutarAccion(g);
+	}
+
+
 	
 	
 }

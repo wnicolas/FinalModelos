@@ -1,7 +1,10 @@
 package objetos;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
+import StateAction.Estado;
+import StateAction.KAttack;
 import estados.EstadoJuego;
 import graficos.Assets;
 import matematica.Vector2D;
@@ -11,9 +14,12 @@ public class Mage extends Player implements Personaje{
 	private final int TIPO_PERSONAJE=2;
 	private Personaje sucesor;
 	
-	public Mage(String tipo, Vector2D posicion, Personaje s) {
+	static Estado miEstado;
+	
+	public Mage(String tipo, Vector2D posicion,Personaje s) {
 		super(tipo, posicion);
 		sucesor=s;
+		
 	}
 
 	@Override
@@ -28,13 +34,20 @@ public class Mage extends Player implements Personaje{
 		
 	}
 	
-	int i=0;
+	
 	@Override
 	public void dibujar(Graphics g) {
-		i++;
-		i=i%4;
-		g.drawImage(Assets.mage_attack[i],(int) posicion.getX(), (int)posicion.getY(), null);
+		Estado.i++;
+		g.drawImage(miEstado.ejecutarAccion(g),(int) posicion.getX(), (int)posicion.getY(), null);
 		
 	}
+	
+	public static void setEstado(Estado e) {
+		miEstado=e;
+	}
+	public static void ejecutarAccion(Graphics g) {
+		miEstado.ejecutarAccion(g);
+	}
+
 
 }

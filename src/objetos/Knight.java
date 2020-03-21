@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import StateAction.Estado;
-import StateAction.KAttack;
-import StateAction.KJump;
-import StateAction.KStop;
 import estados.EstadoJuego;
 import graficos.Assets;
 import matematica.Vector2D;

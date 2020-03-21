@@ -15,6 +15,11 @@ public class Assets {
 	
 	
 	public static BufferedImage[] mage_attack=new BufferedImage[7];
+	public static BufferedImage[] mage_stop=new BufferedImage[1];
+	public static BufferedImage[] mage_idle=new BufferedImage[14];
+	public static BufferedImage[] mage_walk=new BufferedImage[6];
+	public static BufferedImage[] mage_jump=new BufferedImage[7];
+	
 	
 	public static BufferedImage[] knight_attack=new BufferedImage[5];
 	public static BufferedImage[] knight_walk=new BufferedImage[6];
@@ -38,12 +43,16 @@ public class Assets {
 		for(int i=0;i<6;i++) {
 			rogue_walk[i]=Loader.imageLoader("/rogue_walk/walk"+(i+1)+".png");
 			knight_walk[i]=Loader.imageLoader("/knight_walk/walk"+(i+1)+".png");
+			mage_walk[i]=Loader.imageLoader("/mague_walk/walk"+(i+1)+".png");
 		}
 		
-		//Cargando accion stop
+		//Cargando accion idle
 		
 		for(int i=0;i<17;i++) {
 			rogue_idle[i]=Loader.imageLoader("/rogue_idle/idle"+(i+1)+".png");
+		}
+		for(int i=0;i<14;i++) {
+			mage_idle[i]=Loader.imageLoader("/mage_idle/idle"+(i+1)+".png");
 		}
 		
 		//Cargando accion jump
@@ -51,6 +60,7 @@ public class Assets {
 		for(int i=0;i<7;i++) {
 			rogue_jump[i]=Loader.imageLoader("/rogue_jump/jump"+(i+1)+".png");
 			knight_jump[i]=Loader.imageLoader("/knight_jump/jump"+(i+1)+".png");
+			mage_jump[i]=Loader.imageLoader("/mage_jump/jump"+(i+1)+".png");
 		}
 		
 		//Cargando accion push
@@ -63,7 +73,7 @@ public class Assets {
 		//Cargando accion stop
 		rogue_stop[0]=Loader.imageLoader("/rogue_idle/idle1.png");
 		knight_stop[0]=Loader.imageLoader("/knight_idle/idle1.png");
-				
+		mage_stop[0]=Loader.imageLoader("/mage_idle/idle1.png");		
 		
 		
 		
