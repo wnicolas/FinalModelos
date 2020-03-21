@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 
@@ -13,8 +14,8 @@ import input.KeyBoard;
 
 public class VistaJuego extends JFrame implements Runnable{
 	
-	public static final int ANCHO=900;
-	public static final int ALTO=700;
+	public static final int ANCHO=800;
+	public static final int ALTO=600;
 	private Canvas miCanvas;
 	private Thread hilo;
 	private boolean ejecutandoHilo=false;
@@ -26,12 +27,15 @@ public class VistaJuego extends JFrame implements Runnable{
 	
 	private KeyBoard keyBoard;
 	
+	private int personaje;
+	
 	public VistaJuego() {
 		setTitle("Final Modelos de Programación");
 		setSize(ANCHO,ALTO);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		
 		
 		miCanvas=new Canvas();
 		keyBoard=new KeyBoard();
@@ -42,6 +46,27 @@ public class VistaJuego extends JFrame implements Runnable{
 		miCanvas.setFocusable(true);
 		add(miCanvas);
 		miCanvas.addKeyListener(keyBoard);
+		
+		
+		int opcion=0;
+		Scanner sc=new Scanner(System.in);
+		
+		do {
+			System.out.println("*********************************");
+			System.out.println("Elija un personaje y luego oprima 0");
+			System.out.println("1-Knight");
+			System.out.println("2-Mage");
+			System.out.println("3-Rogue");
+			System.out.println("*********************************");
+			opcion=sc.nextInt();
+			
+			if(opcion!=0) {
+				setPersonaje(opcion);
+			}
+			System.out.println("0-Para Iniciar");
+			
+		}while(opcion!=0);
+		
 	}
 	
 	private void actualizar() {
@@ -75,7 +100,7 @@ public class VistaJuego extends JFrame implements Runnable{
 	
 	private void init() {
 		Assets.init();
-		estadoJuego=new EstadoJuego();
+		estadoJuego=new EstadoJuego(personaje);
 	}
 	
 	@Override
@@ -111,6 +136,8 @@ public class VistaJuego extends JFrame implements Runnable{
 			e.printStackTrace();
 		}
 	}
-
+	public void setPersonaje(int tipo) {
+		this.personaje=tipo;
+	}
 	
 }

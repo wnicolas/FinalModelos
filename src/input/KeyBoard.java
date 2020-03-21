@@ -11,13 +11,18 @@ public class KeyBoard implements KeyListener{
 	public static boolean A;
 	public static boolean S;
 	public static boolean D;
-	public static boolean J;
+	public static boolean J;//Salto
+	public static boolean K;//Ataque
+	public static boolean M;//Mute
 	
 	public KeyBoard() {
 		W=false;
 		A=false;
 		S=false;
 		D=false;
+		J=false;
+		K=false;
+		M=false;
 		
 	}
 	
@@ -27,6 +32,8 @@ public class KeyBoard implements KeyListener{
 		S=keys[KeyEvent.VK_S];
 		D=keys[KeyEvent.VK_D];
 		J=keys[KeyEvent.VK_J];
+		K=keys[KeyEvent.VK_K];
+		M=keys[KeyEvent.VK_M];
 	}
 	
 	@Override

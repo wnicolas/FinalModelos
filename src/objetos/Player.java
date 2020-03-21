@@ -1,42 +1,64 @@
 package objetos;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
-import graficos.Assets;
+import StateAction.KAttack;
+import StateAction.KJump;
+import StateAction.KStop;
+import StateAction.KWalk;
 import input.KeyBoard;
 import matematica.Vector2D;
-import vista.VistaJuego;
+import sonido.AttackSound;
+import sonido.JumpSound;
+import sonido.Observador;
+import sonido.OffSound;
+import sonido.Strategy;
 
 public class Player extends GameObject {
-
-	public Player(BufferedImage textura, Vector2D posicion) {
-		super(textura, posicion);
+	
+	Strategy sonido;
+	OffSound offSound;
+	
+	public Player(String tipo, Vector2D posicion) {
+		super(tipo, posicion);
+		offSound=new OffSound();
+		
 	}
-
+	
 	@Override
 	public void actualizar() {
 		if(KeyBoard.W)
 			posicion.setY(posicion.getY()-5);
 		if(KeyBoard.D)
 			posicion.setX(posicion.getX()+5);
+			Knight.setEstado(new KWalk());
 		if(KeyBoard.S)
 			posicion.setY(posicion.getY()+5);
-		if(KeyBoard.A)
+		if(KeyBoard.A) {
 			posicion.setX(posicion.getX()-5);
-		if(KeyBoard.J)
-			System.out.println("Salto");
+		}
+		if(KeyBoard.M) {
+			System.out.println(offSound.off);
+			offSound.changeOffSound();			
+		}
+		if(KeyBoard.J) {
+			Knight.setEstado(new KJump());
+			sonido=new JumpSound(offSound.off);
+		}
+		if(KeyBoard.K) {			
+			Knight.setEstado(new KAttack());
+			sonido=new AttackSound(offSound.off);
+		}
+		if(KeyBoard.W==false&&KeyBoard.D==false && KeyBoard.S==false && KeyBoard.A==false && KeyBoard.J==false && KeyBoard.K==false) {
+			Knight.setEstado(new KStop());
+		}
 		
 	}
-
-	int i=0;
 	
 	@Override
 	public void dibujar(Graphics g) {
-		i++;
-		i=i%1;
-		g.drawImage(Assets.rogue_idle[i],(int) posicion.getX(), (int)posicion.getY(), null);
-		
-	}
 
+	}
+	
+	
 }
