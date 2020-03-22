@@ -31,9 +31,17 @@ import sonido.Strategy;
 
 public class Player extends GameObject {
 	
-	Strategy sonido;
-	OffSound offSound;
+	private Strategy sonido;
+	private OffSound offSound;
+	
+	protected Personaje sucesor;
 
+	protected final int WIDTH_PERSONAJE=40;
+	protected final int HEIGHT_PERSONAJE=52;
+	
+	
+	
+	
 	public Player(String tipo, Vector2D posicion) {
 		super(tipo, posicion);
 		offSound=new OffSound();

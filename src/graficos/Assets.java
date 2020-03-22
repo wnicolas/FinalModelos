@@ -4,7 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	//public static BufferedImage player;
+	public static BufferedImage muro;
+	public static BufferedImage escalera;
 	
 	public static BufferedImage[] rogue_idle=new BufferedImage[17];
 	public static BufferedImage[] rogue_attack=new BufferedImage[7];
@@ -31,9 +32,13 @@ public class Assets {
 	public static BufferedImage[] knight_climb=new BufferedImage[3];
 	
 	
-	public static int index=1;
 	
 	public static void init() {
+		
+		//Cargando mundo
+		muro=Loader.imageLoader("/obstaculos/muro.png");
+		escalera=Loader.imageLoader("/obstaculos/escalera.png");
+		
 		//Cargando accion attack
 		for(int i=0;i<7;i++) {
 			rogue_attack[i]=Loader.imageLoader("/rogue_attack/Attack"+(i+1)+".png");

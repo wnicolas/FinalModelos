@@ -15,7 +15,7 @@ import input.KeyBoard;
 public class VistaJuego extends JFrame implements Runnable{
 	
 	public static final int ANCHO=800;
-	public static final int ALTO=600;
+	public static final int ALTO=590;
 	private Canvas miCanvas;
 	private Thread hilo;
 	private boolean ejecutandoHilo=false;
