@@ -45,6 +45,8 @@ public class Player extends GameObject {
 	Vector2D centroPersonaje=new Vector2D(42,85);
 	
 	protected boolean onFloor=false;
+	protected boolean onStair=false;
+	static boolean onElevator=false;
 	
 	
 	public Player(String tipo, Vector2D posicion) {
@@ -54,13 +56,53 @@ public class Player extends GameObject {
 	
 	@Override
 	public void actualizar() {
-
-		if(KeyBoard.W) {
-			posicion.setY(posicion.getY()-5);
-			Knight.setEstado(new KClimb());
-			Mage.setEstado(new MClimb());
-			Rogue.setEstado(new RClimb());
+		
+		
+		
+		if((posicion.getX()>=570 && posicion.getX()<=640)) {
+			if(posicion.getY()+110==EstadoJuego.ascensor.getPosicion().getY()) {
+				onElevator=true;
+				EstadoJuego.ascensor.activo=true;
+				
+			}
 		}
+		else {
+			onElevator=false;
+			EstadoJuego.ascensor.activo=false;
+		}
+		
+		if(onElevator) {
+			posicion.setY(EstadoJuego.ascensor.getPosicion().getY()-110);
+		}
+		
+
+		//************************************************************************
+		if(posicion.getX()>=115 && posicion.getX()<=140) {
+			onStair=true;
+		}else if(posicion.getX()>=365 && posicion.getX()<=395){
+			onStair=true;
+		}else if(posicion.getX()>=565 && posicion.getX()<=595){
+			onStair=true;
+		}else{
+			onStair=false;
+		}
+		
+		
+		if(KeyBoard.W) {
+			if(onStair==true && (posicion.getY()>=-20)) {
+				posicion.setY(posicion.getY()-5);
+				Knight.setEstado(new KClimb());
+				Mage.setEstado(new MClimb());
+				Rogue.setEstado(new RClimb());
+			}else if(onFloor){
+
+			}else {
+				posicion.setY(posicion.getY()+5);
+
+			}
+		}
+		
+		//************************************************************************
 		
 		if(KeyBoard.D) {
 			posicion.setX(posicion.getX()+5);
@@ -124,6 +166,23 @@ public class Player extends GameObject {
 			Mage.setEstado(new MStop());
 			Rogue.setEstado(new RStop());
 		}
+		
+		//************************************
+		
+		System.out.println("X="+posicion.getX()+"Y="+posicion.getY());
+		
+	
+		if((posicion.getX()<=10&&posicion.getY()==355)||(posicion.getX()<=10&&posicion.getY()==360)||(posicion.getX()<=10&&posicion.getY()==350)) {
+			System.out.println("GANASTEEEEEEEEEE");
+			System.out.println("GANASTEEEEEEEEEE");
+			System.out.println("GANASTEEEEEEEEEE");
+			System.out.println("GANASTEEEEEEEEEE");
+		}
+		
+		//************************************
+		
+				
+		
 		
 	}
 	

@@ -6,6 +6,7 @@ public class Assets {
 
 	public static BufferedImage muro;
 	public static BufferedImage escalera;
+	public static BufferedImage ascensor;
 	
 	public static BufferedImage[] rogue_idle=new BufferedImage[17];
 	public static BufferedImage[] rogue_attack=new BufferedImage[7];
@@ -38,6 +39,7 @@ public class Assets {
 		//Cargando mundo
 		muro=Loader.imageLoader("/obstaculos/muro.png");
 		escalera=Loader.imageLoader("/obstaculos/escalera.png");
+		ascensor=Loader.imageLoader("/obstaculos/ascensor.png");
 		
 		//Cargando accion attack
 		for(int i=0;i<7;i++) {

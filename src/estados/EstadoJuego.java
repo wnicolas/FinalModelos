@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import graficos.Assets;
 import matematica.Vector2D;
+import objetos.Ascensor;
 import objetos.DefaultPersonaje;
 import objetos.Escalera;
 import objetos.Knight;
@@ -39,7 +40,7 @@ public class EstadoJuego {
 	private Muro muro10=new Muro("muro", new Vector2D((300),(460)));
 	private Muro muro7=new Muro("muro", new Vector2D((400),(460)));
 	private Muro muro8=new Muro("muro", new Vector2D((500),(460)));
-	private Muro muro9=new Muro("muro", new Vector2D((600),(460)));
+	private Muro muro9=new Muro("muro", new Vector2D((600),(505)));
 	private Muro muro14=new Muro("muro", new Vector2D((700),(460)));
 	private Muro muro15=new Muro("muro", new Vector2D((700),(360)));
 	private Muro muro16=new Muro("muro", new Vector2D((700),(260)));
@@ -51,22 +52,22 @@ public class EstadoJuego {
 	private Escalera escalera2=new Escalera("escalera",new Vector2D(150,180));
 	private Escalera escalera3=new Escalera("escalera",new Vector2D(400,80));
 	private Escalera escalera4=new Escalera("escalera",new Vector2D(400,180));
-	private Escalera escalera5=new Escalera("escalera",new Vector2D(600,280));
-	private Escalera escalera6=new Escalera("escalera",new Vector2D(600,360));
+	
+	public static Ascensor ascensor=new Ascensor("ascensor",new Vector2D(600,280));
 	
 	
 	public EstadoJuego(int personaje) {
 		this.tipo=personaje;
 		defaultPersonaje=new DefaultPersonaje();
-		rogue=new Rogue("rogue",new Vector2D(0,170),defaultPersonaje);
-		mage=new Mage("mage",new Vector2D(0,170),rogue);
-		knight=new Knight("knight",new Vector2D(0,170),mage);
+		rogue=new Rogue("rogue",new Vector2D(400,170),defaultPersonaje);
+		mage=new Mage("mage",new Vector2D(400,170),rogue);
+		knight=new Knight("knight",new Vector2D(400,170),mage);
 		knight.setPersonaje(tipo);
 		
 		muro1=new Muro("muro", new Vector2D((0),(280)));
 		muro3=new Muro("muro", new Vector2D((200),(80)));
 		muro13=new Muro("muro", new Vector2D((0),(460)));
-
+				
 	}
 	
 	public void actualizar() {
@@ -81,7 +82,10 @@ public class EstadoJuego {
 		if(Tipo_Personaje==3) {
 			rogue.actualizar();			
 		}
+		
+		ascensor.actualizar();
 	}
+	
 	public void dibujar(Graphics g) {
 		
 		muro1.dibujar(g);
@@ -108,8 +112,8 @@ public class EstadoJuego {
 		escalera2.dibujar(g);
 		escalera3.dibujar(g);
 		escalera4.dibujar(g);
-		escalera5.dibujar(g);
-		escalera6.dibujar(g);
+		
+		ascensor.dibujar(g);
 		
 		
 		if(Tipo_Personaje==1) {
