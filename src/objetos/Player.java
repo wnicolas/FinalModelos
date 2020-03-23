@@ -20,6 +20,7 @@ import StateAction.RClimb;
 import StateAction.RJump;
 import StateAction.RStop;
 import StateAction.RWalk;
+import estados.EstadoJuego;
 import graficos.Assets;
 import input.KeyBoard;
 import matematica.Vector2D;
@@ -36,10 +37,14 @@ public class Player extends GameObject {
 	
 	protected Personaje sucesor;
 
-	protected final int WIDTH_PERSONAJE=40;
-	protected final int HEIGHT_PERSONAJE=52;
+	protected final int WIDTH_PERSONAJE=36;
+	protected final int HEIGHT_PERSONAJE=50;
+	protected final int MARGENIZQUIERDA=26;
+	protected final int MARGENDERECHA=60;
 	
+	Vector2D centroPersonaje=new Vector2D(42,85);
 	
+	protected boolean onFloor=false;
 	
 	
 	public Player(String tipo, Vector2D posicion) {
@@ -49,43 +54,71 @@ public class Player extends GameObject {
 	
 	@Override
 	public void actualizar() {
+
 		if(KeyBoard.W) {
 			posicion.setY(posicion.getY()-5);
 			Knight.setEstado(new KClimb());
 			Mage.setEstado(new MClimb());
 			Rogue.setEstado(new RClimb());
 		}
+		
 		if(KeyBoard.D) {
 			posicion.setX(posicion.getX()+5);
 			Knight.setEstado(new KWalk());
 			Mage.setEstado(new MWalk());
 			Rogue.setEstado(new RWalk());
 		}
-		if(KeyBoard.S) {
-			posicion.setY(posicion.getY()+5);
-			Knight.setEstado(new KClimb());
-			Mage.setEstado(new MClimb());
-			Rogue.setEstado(new RClimb());
+		
+		
+		//************************************************************************
+		if((posicion.getY()==(EstadoJuego.muro1.getPosicion().getY()-110)&& (posicion.getX()<200-MARGENIZQUIERDA || (posicion.getX()>400-MARGENIZQUIERDA-WIDTH_PERSONAJE&&posicion.getX()<600-MARGENIZQUIERDA)))){
+			onFloor=true;
+		}else if(posicion.getY()==(EstadoJuego.muro3.getPosicion().getY()-100)&&(posicion.getX()>200-MARGENIZQUIERDA+5-WIDTH_PERSONAJE&&posicion.getX()<400-MARGENIZQUIERDA)) {
+			onFloor=true;
+		}else if(posicion.getY()==(EstadoJuego.muro13.getPosicion().getY()-100)){
+			onFloor=true;
+		}else{
+			onFloor=false;
 		}
+		
+		
+		if(KeyBoard.S) {
+			if(onFloor==false) {
+				posicion.setY(posicion.getY()+5);				
+				Knight.setEstado(new KClimb());
+				Mage.setEstado(new MClimb());
+				Rogue.setEstado(new RClimb());
+			}else {
+				posicion.setY(posicion.getY()-5);
+			}
+		}		
+		//************************************************************************
+		
+
+		
 		if(KeyBoard.A) {
 			posicion.setX(posicion.getX()-5);
 		}
+		
 		if(KeyBoard.M) {
 			System.out.println(offSound.off);
 			offSound.changeOffSound();			
 		}
+		
 		if(KeyBoard.J) {
 			Knight.setEstado(new KJump());
 			Mage.setEstado(new MJump());
 			Rogue.setEstado(new RJump());
 			sonido=new JumpSound(offSound.off);
 		}
+		
 		if(KeyBoard.K) {			
 			Knight.setEstado(new KAttack());
 			Mage.setEstado(new MAttack());
 			Rogue.setEstado(new RAttack());
 			sonido=new AttackSound(offSound.off);
 		}
+		
 		if(KeyBoard.W==false&&KeyBoard.D==false && KeyBoard.S==false && KeyBoard.A==false && KeyBoard.J==false && KeyBoard.K==false) {
 			Knight.setEstado(new KStop());
 			Mage.setEstado(new MStop());

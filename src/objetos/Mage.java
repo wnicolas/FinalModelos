@@ -37,7 +37,7 @@ public class Mage extends Player implements Personaje{
 	@Override
 	public void dibujar(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect((int)posicion.getX()+ Assets.knight_stop[0].getWidth()/6, (int)posicion.getY()+ Assets.knight_stop[0].getWidth()/3+(17),WIDTH_PERSONAJE,HEIGHT_PERSONAJE);
+		//g.fillRect((int)posicion.getX()+ Assets.knight_stop[0].getWidth()/6+(5), (2)+(int)posicion.getY()+ Assets.knight_stop[0].getWidth()/3+(17),WIDTH_PERSONAJE,HEIGHT_PERSONAJE);
 		Estado.i++;
 		g.drawImage(miEstado.ejecutarAccion(g),(int) posicion.getX(), (int)posicion.getY(), null);
 		

@@ -16,8 +16,6 @@ import vista.VistaJuego;
 
 public class EstadoJuego {
 	
-	private Player player;
-	
 	public static int Tipo_Personaje=0;
 	private int tipo=0;
 	private Rogue rogue;
@@ -26,15 +24,16 @@ public class EstadoJuego {
 	private DefaultPersonaje defaultPersonaje;
 
 
-	private Muro muro1=new Muro("muro", new Vector2D((0),(280)));
+	public static Muro muro1;
+	
 	private Muro muro2=new Muro("muro", new Vector2D((100),(280)));
-	private Muro muro3=new Muro("muro", new Vector2D((200),(80)));
+	public static Muro muro3;
 	private Muro muro4=new Muro("muro", new Vector2D((300),(80)));
 	private Muro muro6=new Muro("muro", new Vector2D((400),(280)));
 	
 	private Muro muro5=new Muro("muro", new Vector2D((500),(280)));
 	
-	private Muro muro13=new Muro("muro", new Vector2D((0),(460)));
+	public static Muro muro13;
 	private Muro muro12=new Muro("muro", new Vector2D((100),(460)));
 	private Muro muro11=new Muro("muro", new Vector2D((200),(460)));
 	private Muro muro10=new Muro("muro", new Vector2D((300),(460)));
@@ -59,29 +58,27 @@ public class EstadoJuego {
 	public EstadoJuego(int personaje) {
 		this.tipo=personaje;
 		defaultPersonaje=new DefaultPersonaje();
-		rogue=new Rogue("rogue",new Vector2D(0,70),defaultPersonaje);
-		mage=new Mage("mage",new Vector2D(0,70),rogue);
-		knight=new Knight("knight",new Vector2D(0,70),mage);
+		rogue=new Rogue("rogue",new Vector2D(0,170),defaultPersonaje);
+		mage=new Mage("mage",new Vector2D(0,170),rogue);
+		knight=new Knight("knight",new Vector2D(0,170),mage);
 		knight.setPersonaje(tipo);
 		
-	
-		
+		muro1=new Muro("muro", new Vector2D((0),(280)));
+		muro3=new Muro("muro", new Vector2D((200),(80)));
+		muro13=new Muro("muro", new Vector2D((0),(460)));
 
 	}
 	
 	public void actualizar() {
 		if(Tipo_Personaje==1) {
-			//System.out.println("KNIGHT");
 			knight.actualizar();
 			
 		} 
 		if(Tipo_Personaje==2) {
-			//System.out.println("MAGE");
 			mage.actualizar();
 			
 		}
 		if(Tipo_Personaje==3) {
-			//System.out.println("ROGUE");
 			rogue.actualizar();			
 		}
 	}

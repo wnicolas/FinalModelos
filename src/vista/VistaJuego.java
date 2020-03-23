@@ -110,7 +110,7 @@ public class VistaJuego extends JFrame implements Runnable{
 		
 		while(ejecutandoHilo) {
 			try {
-				hilo.sleep(100);
+				hilo.sleep(50);
 				actualizar();
 				dibujar();
 			} catch (InterruptedException e) {
