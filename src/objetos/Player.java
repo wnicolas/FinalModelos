@@ -169,7 +169,7 @@ public class Player extends GameObject {
 		
 		//************************************
 		
-		System.out.println("X="+posicion.getX()+"Y="+posicion.getY());
+		//System.out.println("X="+posicion.getX()+"Y="+posicion.getY());
 		
 	
 		if((posicion.getX()<=10&&posicion.getY()==355)||(posicion.getX()<=10&&posicion.getY()==360)||(posicion.getX()<=10&&posicion.getY()==350)) {

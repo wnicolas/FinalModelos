@@ -35,6 +35,7 @@ public class EstadoJuego {
 	private Muro muro5=new Muro("muro", new Vector2D((500),(280)));
 	
 	public static Muro muro13;
+	
 	private Muro muro12=new Muro("muro", new Vector2D((100),(460)));
 	private Muro muro11=new Muro("muro", new Vector2D((200),(460)));
 	private Muro muro10=new Muro("muro", new Vector2D((300),(460)));
