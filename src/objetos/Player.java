@@ -47,7 +47,11 @@ public class Player extends GameObject {
 	
 	protected boolean onFloor=false;
 	protected boolean onStair=false;
+	protected boolean activarSegundoAscensor=false;
 	static boolean onElevator=false;
+	
+	protected int salto=0;
+	protected boolean accionTerminada=false;
 	
 	
 	public Player(String tipo, Vector2D posicion) {
@@ -79,6 +83,10 @@ public class Player extends GameObject {
 		
 		if(onElevator==false && onFloor==false && onStair==false) {
 			posicion.setY(posicion.getY()+5);
+		}
+		
+		if(EstadoJuego.roca.getPosicion().getX()>=396) {
+			EstadoJuego.ascensor2.setPosicion(new Vector2D(EstadoJuego.ascensor2.getPosicion().getX(),EstadoJuego.ascensor2.getPosicion().getY()-1));
 		}
 		
 
@@ -114,11 +122,30 @@ public class Player extends GameObject {
 			if(posicion.getX()==VistaJuego.ANCHO) {
 				posicion.setX(0-24-WIDTH_PERSONAJE);
 			}
-			posicion.setX(posicion.getX()+5);
-			Knight.setEstado(new KWalk());
-			Mage.setEstado(new MWalk());
-			Rogue.setEstado(new RWalk());
+			
+			if(posicion.getY()==360 && (EstadoJuego.roca.getPosicion().getX()-posicion.getX()==58)) {
+	
+					EstadoJuego.roca.setPosicion(new Vector2D(EstadoJuego.roca.getPosicion().getX()+1,EstadoJuego.roca.getPosicion().getY()));;
+					posicion.setX(posicion.getX()+1);
+					Knight.setEstado(new KWalk());
+					Mage.setEstado(new MWalk());
+					Rogue.setEstado(new RWalk());
+				
+					
+					
+				}else {
+					posicion.setX(posicion.getX()+5);
+					Knight.setEstado(new KWalk());
+					Mage.setEstado(new MWalk());
+					Rogue.setEstado(new RWalk());
+				
+			}
+			
+				
+			
 		}
+			
+			
 		
 		
 		//************************************************************************
@@ -160,10 +187,14 @@ public class Player extends GameObject {
 		}
 		
 		if(KeyBoard.J) {
+		
+			posicion.setY(posicion.getY()-5);
 			Knight.setEstado(new KJump());
 			Mage.setEstado(new MJump());
 			Rogue.setEstado(new RJump());
-			sonido=new JumpSound(offSound.off);
+				
+				sonido=new JumpSound(offSound.off);
+			
 		}
 		
 		if(KeyBoard.K) {			
@@ -181,7 +212,7 @@ public class Player extends GameObject {
 		
 		//************************************
 		
-		//System.out.println("X="+posicion.getX()+"Y="+posicion.getY());
+		System.out.println("PLAYER--> X="+posicion.getX()+"Y="+posicion.getY()+"    ROCA--> X="+EstadoJuego.roca.posicion.getX()+"Y="+EstadoJuego.roca.posicion.getY());
 		
 	
 		if((posicion.getX()<=10&&posicion.getY()==355)||(posicion.getX()<=10&&posicion.getY()==360)||(posicion.getX()<=10&&posicion.getY()==350)) {

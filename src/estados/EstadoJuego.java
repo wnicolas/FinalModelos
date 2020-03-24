@@ -12,6 +12,7 @@ import objetos.Knight;
 import objetos.Mage;
 import objetos.Muro;
 import objetos.Player;
+import objetos.Roca;
 import objetos.Rogue;
 import vista.VistaJuego;
 
@@ -55,7 +56,8 @@ public class EstadoJuego {
 	private Escalera escalera4=new Escalera("escalera",new Vector2D(400,180));
 	
 	public static Ascensor ascensor=new Ascensor("ascensor",new Vector2D(600,280));
-	
+	public static Ascensor ascensor2=new Ascensor("ascensor",new Vector2D(250,460));
+	public static Roca roca=new Roca("roca",new Vector2D(263,400));
 	
 	public EstadoJuego(int personaje) {
 		this.tipo=personaje;
@@ -115,7 +117,9 @@ public class EstadoJuego {
 		escalera4.dibujar(g);
 		
 		ascensor.dibujar(g);
-		
+		ascensor2.dibujar(g);
+		g.drawImage(Assets.llamarAscensor, 433, 404, null);
+		roca.dibujar(g);
 		
 		if(Tipo_Personaje==1) {
 			knight.dibujar(g);
