@@ -27,6 +27,7 @@ public class Assets {
 	
 	public static BufferedImage[] knight_attack=new BufferedImage[5];
 	public static BufferedImage[] knight_walk=new BufferedImage[6];
+	public static BufferedImage[] knight_iwalk=new BufferedImage[6];
 	public static BufferedImage[] knight_jump=new BufferedImage[7];
 	public static BufferedImage[] knight_push=new BufferedImage[4];
 	public static BufferedImage[] knight_stop=new BufferedImage[1];
@@ -54,6 +55,7 @@ public class Assets {
 		for(int i=0;i<6;i++) {
 			rogue_walk[i]=Loader.imageLoader("/rogue_walk/walk"+(i+1)+".png");
 			knight_walk[i]=Loader.imageLoader("/knight_walk/walk"+(i+1)+".png");
+			knight_iwalk[i]=Loader.imageLoader("/knight_walk/walk"+(i+1)+"-ConvertImage.png");
 			mage_walk[i]=Loader.imageLoader("/mague_walk/walk"+(i+1)+".png");
 		}
 		

@@ -29,6 +29,7 @@ import sonido.JumpSound;
 import sonido.Observador;
 import sonido.OffSound;
 import sonido.Strategy;
+import vista.VistaJuego;
 
 public class Player extends GameObject {
 	
@@ -75,6 +76,11 @@ public class Player extends GameObject {
 			posicion.setY(EstadoJuego.ascensor.getPosicion().getY()-110);
 		}
 		
+		
+		if(onElevator==false && onFloor==false && onStair==false) {
+			posicion.setY(posicion.getY()+5);
+		}
+		
 
 		//************************************************************************
 		if(posicion.getX()>=115 && posicion.getX()<=140) {
@@ -105,6 +111,9 @@ public class Player extends GameObject {
 		//************************************************************************
 		
 		if(KeyBoard.D) {
+			if(posicion.getX()==VistaJuego.ANCHO) {
+				posicion.setX(0-24-WIDTH_PERSONAJE);
+			}
 			posicion.setX(posicion.getX()+5);
 			Knight.setEstado(new KWalk());
 			Mage.setEstado(new MWalk());
@@ -140,6 +149,9 @@ public class Player extends GameObject {
 		
 		if(KeyBoard.A) {
 			posicion.setX(posicion.getX()-5);
+			Knight.setEstado(new KWalk());
+			Mage.setEstado(new MWalk());
+			Rogue.setEstado(new RWalk());
 		}
 		
 		if(KeyBoard.M) {

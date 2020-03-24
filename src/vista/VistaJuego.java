@@ -166,7 +166,7 @@ public class VistaJuego extends JFrame implements Runnable{
 		
 		while(ejecutandoHilo) {
 			try {
-				hilo.sleep(50);
+				hilo.sleep(25);
 				actualizar();
 				dibujar();
 			} catch (InterruptedException e) {
