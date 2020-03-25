@@ -49,6 +49,7 @@ public class Player extends GameObject {
 	protected boolean onStair=false;
 	protected boolean activarSegundoAscensor=false;
 	static boolean onElevator=false;
+	static boolean onElevator2=false;
 	
 	protected int salto=0;
 	protected boolean accionTerminada=false;
@@ -68,11 +69,18 @@ public class Player extends GameObject {
 			if(posicion.getY()+110==EstadoJuego.ascensor.getPosicion().getY()) {
 				onElevator=true;
 				EstadoJuego.ascensor.activo=true;
-				
+			}
+		}else if((posicion.getX()>=250-MARGENIZQUIERDA-WIDTH_PERSONAJE && posicion.getX()<=350)) {
+			if(posicion.getY()+110==EstadoJuego.ascensor2.getPosicion().getY()) {
+			onElevator2=true;
+			
+			
+			
 			}
 		}
 		else {
 			onElevator=false;
+			onElevator2=false;
 			EstadoJuego.ascensor.activo=false;
 		}
 		
@@ -80,14 +88,21 @@ public class Player extends GameObject {
 			posicion.setY(EstadoJuego.ascensor.getPosicion().getY()-110);
 		}
 		
+		if(onElevator2) {
+			posicion.setY(EstadoJuego.ascensor2.getPosicion().getY()-110);
+			
+		}
 		
-		if(onElevator==false && onFloor==false && onStair==false) {
+		
+		if(onElevator==false && onFloor==false && onStair==false && onElevator2==false) {
 			posicion.setY(posicion.getY()+5);
 		}
 		
 		if(EstadoJuego.roca.getPosicion().getX()>=396) {
 			EstadoJuego.ascensor2.setPosicion(new Vector2D(EstadoJuego.ascensor2.getPosicion().getX(),EstadoJuego.ascensor2.getPosicion().getY()-1));
 		}
+		
+		
 		
 
 		//************************************************************************
@@ -212,14 +227,14 @@ public class Player extends GameObject {
 		
 		//************************************
 		
-		System.out.println("PLAYER--> X="+posicion.getX()+"Y="+posicion.getY()+"    ROCA--> X="+EstadoJuego.roca.posicion.getX()+"Y="+EstadoJuego.roca.posicion.getY());
+		//System.out.println("PLAYER--> X="+posicion.getX()+"Y="+posicion.getY()+"    ASCENSOR2--> X="+EstadoJuego.ascensor2.posicion.getX()+"Y="+EstadoJuego.ascensor2.posicion.getY());
 		
 	
-		if((posicion.getX()<=10&&posicion.getY()==355)||(posicion.getX()<=10&&posicion.getY()==360)||(posicion.getX()<=10&&posicion.getY()==350)) {
-			System.out.println("GANASTEEEEEEEEEE");
-			System.out.println("GANASTEEEEEEEEEE");
-			System.out.println("GANASTEEEEEEEEEE");
-			System.out.println("GANASTEEEEEEEEEE");
+		if((posicion.getX()>=166&&posicion.getX()<=374)) {
+			if((posicion.getY()==140)) {
+				System.out.println("GANASTEEEEEEEEEE");
+				
+			}
 		}
 		
 		//************************************
@@ -231,6 +246,7 @@ public class Player extends GameObject {
 	
 	@Override
 	public void dibujar(Graphics g) {
+
 	}
 	
 	

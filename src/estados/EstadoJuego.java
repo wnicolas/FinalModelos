@@ -56,7 +56,7 @@ public class EstadoJuego {
 	private Escalera escalera4=new Escalera("escalera",new Vector2D(400,180));
 	
 	public static Ascensor ascensor=new Ascensor("ascensor",new Vector2D(600,280));
-	public static Ascensor ascensor2=new Ascensor("ascensor",new Vector2D(250,460));
+	public static Ascensor ascensor2=new Ascensor("ascensor",new Vector2D(250,550));
 	public static Roca roca=new Roca("roca",new Vector2D(263,400));
 	
 	public EstadoJuego(int personaje) {
