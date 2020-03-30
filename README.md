@@ -1,4 +1,4 @@
-#Proyecto Final - Modelos de Programación I
+Proyecto Final - Modelos de Programación I
 
 
 ##Integrantes
