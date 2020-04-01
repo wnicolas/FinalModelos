@@ -1,5 +1,23 @@
+# Proyecto Final - Modelos de Programación I
 
+## Integrantes:
+- Nicolás Buitrago  20172020079 
+- Diego Galeano     20172020074
+- Diego Lizarazo    20172020093
 
-##DemoV4 ##Nicolás Buitrago 20172020079 ##Diego Lizarazo 20172020093 ##Diego Galeano 20172020074
+## Diagrama de Clases:
 
-Demo de video juego V4. Los patrones implementados (State y ...) se pueden ver implementados en los paquetes 'stateAction' y ...
+### - Chain of Responsability
+![chain of responsability](resources/chain_of_responsability.jpeg)
+
+### - Command
+![command](resources/command.jpeg)
+
+### - State
+![state](resources/state.jpeg)
+
+### - Strategy
+![strategy](resources/strategy.jpeg)
+
+### - Observer
+![obeserver](resources/observer.jpeg)
