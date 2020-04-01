@@ -3,6 +3,8 @@ package objetos;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JOptionPane;
+
 import StateAction.Estado;
 import StateAction.KAttack;
 import StateAction.KClimb;
@@ -63,47 +65,7 @@ public class Player extends GameObject {
 	@Override
 	public void actualizar() {
 		
-		
-		
-		if((posicion.getX()>=570 && posicion.getX()<=640)) {
-			if(posicion.getY()+110==EstadoJuego.ascensor.getPosicion().getY()) {
-				onElevator=true;
-				EstadoJuego.ascensor.activo=true;
-			}
-		}else if((posicion.getX()>=250-MARGENIZQUIERDA-WIDTH_PERSONAJE && posicion.getX()<=350)) {
-			if(posicion.getY()+110==EstadoJuego.ascensor2.getPosicion().getY()) {
-			onElevator2=true;
-			
-			
-			
-			}
-		}
-		else {
-			onElevator=false;
-			onElevator2=false;
-			EstadoJuego.ascensor.activo=false;
-		}
-		
-		if(onElevator) {
-			posicion.setY(EstadoJuego.ascensor.getPosicion().getY()-110);
-		}
-		
-		if(onElevator2) {
-			posicion.setY(EstadoJuego.ascensor2.getPosicion().getY()-110);
-			
-		}
-		
-		
-		if(onElevator==false && onFloor==false && onStair==false && onElevator2==false) {
-			posicion.setY(posicion.getY()+5);
-		}
-		
-		if(EstadoJuego.roca.getPosicion().getX()>=396) {
-			EstadoJuego.ascensor2.setPosicion(new Vector2D(EstadoJuego.ascensor2.getPosicion().getX(),EstadoJuego.ascensor2.getPosicion().getY()-1));
-		}
-		
-		
-		
+		evaluarAscensor();
 
 		//************************************************************************
 		if(posicion.getX()>=115 && posicion.getX()<=140) {
@@ -115,8 +77,7 @@ public class Player extends GameObject {
 		}else{
 			onStair=false;
 		}
-		
-		
+
 		if(KeyBoard.W) {
 			if(onStair==true && (posicion.getY()>=-20)) {
 				posicion.setY(posicion.getY()-5);
@@ -144,25 +105,16 @@ public class Player extends GameObject {
 					posicion.setX(posicion.getX()+1);
 					Knight.setEstado(new KWalk());
 					Mage.setEstado(new MWalk());
-					Rogue.setEstado(new RWalk());
-				
-					
-					
+					Rogue.setEstado(new RWalk());			
 				}else {
 					posicion.setX(posicion.getX()+5);
 					Knight.setEstado(new KWalk());
 					Mage.setEstado(new MWalk());
 					Rogue.setEstado(new RWalk());
-				
 			}
-			
-				
-			
+
 		}
-			
-			
-		
-		
+
 		//************************************************************************
 		if((posicion.getY()==(EstadoJuego.muro1.getPosicion().getY()-110)&& (posicion.getX()<200-MARGENIZQUIERDA || (posicion.getX()>400-MARGENIZQUIERDA-WIDTH_PERSONAJE&&posicion.getX()<600-MARGENIZQUIERDA)))){
 			onFloor=true;
@@ -185,10 +137,7 @@ public class Player extends GameObject {
 				posicion.setY(posicion.getY()-5);
 			}
 		}		
-		//************************************************************************
-		
-
-		
+		//************************************************************************	
 		if(KeyBoard.A) {
 			posicion.setX(posicion.getX()-5);
 			Knight.setEstado(new KWalk());
@@ -207,8 +156,7 @@ public class Player extends GameObject {
 			Knight.setEstado(new KJump());
 			Mage.setEstado(new MJump());
 			Rogue.setEstado(new RJump());
-				
-				sonido=new JumpSound(offSound.off);
+			sonido=new JumpSound(offSound.off);
 			
 		}
 		
@@ -224,24 +172,10 @@ public class Player extends GameObject {
 			Mage.setEstado(new MStop());
 			Rogue.setEstado(new RStop());
 		}
-		
 		//************************************
-		
-		//System.out.println("PLAYER--> X="+posicion.getX()+"Y="+posicion.getY()+"    ASCENSOR2--> X="+EstadoJuego.ascensor2.posicion.getX()+"Y="+EstadoJuego.ascensor2.posicion.getY());
-		
+
+		evaluarVictoria();
 	
-		if((posicion.getX()>=166&&posicion.getX()<=374)) {
-			if((posicion.getY()==140)) {
-				System.out.println("GANASTEEEEEEEEEE");
-				
-			}
-		}
-		
-		//************************************
-		
-				
-		
-		
 	}
 	
 	@Override
@@ -249,5 +183,48 @@ public class Player extends GameObject {
 
 	}
 	
-	
+	public void evaluarAscensor() {
+		if((posicion.getX()>=570 && posicion.getX()<=640)) {
+			if(posicion.getY()+110==EstadoJuego.ascensor.getPosicion().getY()) {
+				onElevator=true;
+				EstadoJuego.ascensor.activo=true;
+			}
+		}else if((posicion.getX()>=250-MARGENIZQUIERDA-WIDTH_PERSONAJE && posicion.getX()<=350)) {
+			if(posicion.getY()+110==EstadoJuego.ascensor2.getPosicion().getY()) {
+			onElevator2=true;
+			}
+		}
+		else {
+			onElevator=false;
+			onElevator2=false;
+			EstadoJuego.ascensor.activo=false;
+		}
+		
+		if(onElevator) {
+			posicion.setY(EstadoJuego.ascensor.getPosicion().getY()-110);
+		}
+		
+		if(onElevator2) {
+			posicion.setY(EstadoJuego.ascensor2.getPosicion().getY()-110);
+			
+		}
+		
+		
+		if(onElevator==false && onFloor==false && onStair==false && onElevator2==false) {
+			posicion.setY(posicion.getY()+5);
+		}
+		
+		if(EstadoJuego.roca.getPosicion().getX()>=396) {
+			EstadoJuego.ascensor2.setPosicion(new Vector2D(EstadoJuego.ascensor2.getPosicion().getX(),EstadoJuego.ascensor2.getPosicion().getY()-1));
+		}
+	}
+
+	public void evaluarVictoria() {
+		if((posicion.getX()>=166&&posicion.getX()<=374)) {
+			if((posicion.getY()==140)) {
+				JOptionPane.showMessageDialog(null, "¡FELICIDADES, GANASTE!", "Profe, pónganos 50 :v", JOptionPane.INFORMATION_MESSAGE);
+				System.exit(0);
+			}
+		}
+	}
 }

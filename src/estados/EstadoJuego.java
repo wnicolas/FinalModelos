@@ -27,16 +27,12 @@ public class EstadoJuego {
 
 
 	public static Muro muro1;
-	
 	private Muro muro2=new Muro("muro", new Vector2D((100),(280)));
 	public static Muro muro3;
 	private Muro muro4=new Muro("muro", new Vector2D((300),(80)));
 	private Muro muro6=new Muro("muro", new Vector2D((400),(280)));
-	
 	private Muro muro5=new Muro("muro", new Vector2D((500),(280)));
-	
 	public static Muro muro13;
-	
 	private Muro muro12=new Muro("muro", new Vector2D((100),(460)));
 	private Muro muro11=new Muro("muro", new Vector2D((200),(460)));
 	private Muro muro10=new Muro("muro", new Vector2D((300),(460)));
@@ -63,8 +59,8 @@ public class EstadoJuego {
 		this.tipo=personaje;
 		defaultPersonaje=new DefaultPersonaje();
 		rogue=new Rogue("rogue",new Vector2D(0,0),defaultPersonaje);
-		mage=new Mage("mage",new Vector2D(400,0),rogue);
-		knight=new Knight("knight",new Vector2D(400,160),mage);
+		mage=new Mage("mage",new Vector2D(0,0),rogue);
+		knight=new Knight("knight",new Vector2D(0,0),mage);
 		knight.setPersonaje(tipo);
 		
 		muro1=new Muro("muro", new Vector2D((0),(280)));
@@ -135,6 +131,9 @@ public class EstadoJuego {
 		
 	}
 	
+	public void crearComponentes() {
+		
+	}
 	
 
 }
